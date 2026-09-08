@@ -210,11 +210,10 @@ PLOTLY_TEMPLATE = dict(
         paper_bgcolor="white",
         plot_bgcolor="#f8fafc",
         font=dict(family="Inter, sans-serif", color="#0f172a", size=12),
-        title=dict(font=dict(size=14, color="#0f172a", family="Inter, sans-serif"), x=0),
         xaxis=dict(gridcolor="#e2e8f0", zerolinecolor="#e2e8f0", linecolor="#e2e8f0"),
         yaxis=dict(gridcolor="#e2e8f0", zerolinecolor="#e2e8f0", linecolor="#e2e8f0"),
         legend=dict(bgcolor="white", bordercolor="#e2e8f0", borderwidth=1),
-        margin=dict(t=50, b=40, l=40, r=20),
+        margin=dict(t=20, b=40, l=40, r=20),
         colorway=["#2563eb", "#7c3aed", "#0ea5e9", "#f59e0b", "#ef4444",
                   "#22c55e", "#f97316", "#ec4899", "#14b8a6", "#8b5cf6"],
     )
@@ -225,6 +224,7 @@ QUAL_PALETTE = ["#2563eb", "#7c3aed", "#0ea5e9", "#f59e0b", "#ef4444",
 
 def apply_template(fig):
     fig.update_layout(PLOTLY_TEMPLATE["layout"])
+    fig.layout.title = None
     return fig
 
 def fmt_k(val):
@@ -474,8 +474,8 @@ with tabs[0]:
             textinfo="label+percent",
             textfont_size=11,
         ))
-        fig.update_layout(height=270, showlegend=False, margin=dict(t=20, b=10, l=10, r=10))
         apply_template(fig)
+        fig.update_layout(height=270, showlegend=False, margin=dict(t=20, b=10, l=10, r=10))
         st.plotly_chart(fig, use_container_width=True)
 
     with col_b:
@@ -489,8 +489,8 @@ with tabs[0]:
             textinfo="label+percent",
             textfont_size=11,
         ))
-        fig.update_layout(height=270, showlegend=False, margin=dict(t=20, b=10, l=10, r=10))
         apply_template(fig)
+        fig.update_layout(height=270, showlegend=False, margin=dict(t=20, b=10, l=10, r=10))
         st.plotly_chart(fig, use_container_width=True)
 
     with col_c:
@@ -503,8 +503,8 @@ with tabs[0]:
             textinfo="label+percent",
             textfont_size=11,
         ))
-        fig.update_layout(height=270, showlegend=False, margin=dict(t=20, b=10, l=10, r=10))
         apply_template(fig)
+        fig.update_layout(height=270, showlegend=False, margin=dict(t=20, b=10, l=10, r=10))
         st.plotly_chart(fig, use_container_width=True)
 
     with col_d:
@@ -519,8 +519,8 @@ with tabs[0]:
             textinfo="label+percent",
             textfont_size=11,
         ))
-        fig.update_layout(height=270, showlegend=False, margin=dict(t=20, b=10, l=10, r=10))
         apply_template(fig)
+        fig.update_layout(height=270, showlegend=False, margin=dict(t=20, b=10, l=10, r=10))
         st.plotly_chart(fig, use_container_width=True)
 
 # ═══════════════════════════════════════════════════════════════════════
