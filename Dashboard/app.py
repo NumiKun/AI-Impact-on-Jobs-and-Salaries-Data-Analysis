@@ -1,3 +1,4 @@
+from pathlib import Path
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -236,9 +237,18 @@ def fmt_k(val):
 # ── Data loading ─────────────────────────────────────────────────────────────
 @st.cache_data(show_spinner=False)
 def load_data():
-    df = pd.read_csv("Dataset/ai_jobs_salaries_clean.csv")
-    df["work_year"] = df["work_year"].astype(int)
-    return df
+    candidate_paths = [
+        Path("Dataset/ai_jobs_salaries_clean.csv"),
+        Path("../Dataset/ai_jobs_salaries_clean.csv"),
+        Path(__file__).resolve().parent.parent / "Dataset" / "ai_jobs_salaries_clean.csv",
+        Path(__file__).resolve().parent / "Dataset" / "ai_jobs_salaries_clean.csv",
+    ]
+    for p in candidate_paths:
+        if p.exists():
+            df = pd.read_csv(p)
+            df["work_year"] = df["work_year"].astype(int)
+            return df
+    raise FileNotFoundError("Dataset/ai_jobs_salaries_clean.csv could not be found.")
 
 with st.spinner("Loading data..."):
     df_raw = load_data()
