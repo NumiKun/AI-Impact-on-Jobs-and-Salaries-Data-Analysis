@@ -773,8 +773,10 @@ with tabs[1]:
             pivot = pivot.sort_values(_sort_col, ascending=False, na_position="last")
         pivot = pivot / 1000
 
-        _text = np.where(np.isnan(pivot.values), "",
-                         np.round(pivot.values, 0).astype("Int64").astype(str) + "K")
+        _text = [
+            [f"{val:.0f}K" if pd.notna(val) else "" for val in row]
+            for row in pivot.values
+        ]
         fig = go.Figure(go.Heatmap(
             z=pivot.values,
             x=pivot.columns.tolist(),
